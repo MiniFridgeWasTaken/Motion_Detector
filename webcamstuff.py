@@ -4,7 +4,7 @@ cap = cv.VideoCapture(0)
 
 if not cap.IsOpened():
   print("404:Webcam not found")
-  break
+  exit()
 
 
 while True:
@@ -16,11 +16,9 @@ while True:
 
   cap.imshow(frame)
 
-  if cv.waitKey(1) == ord("q")
+  if cv.waitKey(1) == ord("q"):
     break
 
 
 cv.release()
 cv.destroyAllWindows()
-
-
