@@ -23,9 +23,9 @@ while True:
 
   
 
-  (cntr,_) = cv.findContours(threshold_frame.copy(),cv.RETR_EXTERNAL,cv.CHAIN_APPROX_SIMPLE)
+  (cntr,_) = cv.findContours(threshold_frame.copy(),cv.RETR_EXTERNAL,cv.CHAIN_APPROX_SIMPLE) #using noise for detection
   
-  for contour in cntr:
+  for contour in cntr:  #making sure the noise is not too much or else image is weird
     if cv.contourArea(contour) < 1000:
       continue
 
