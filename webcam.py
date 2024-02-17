@@ -12,12 +12,15 @@ while True:
   ret,frame = cap.read()
   gray = cv.cvtColor(frame,cv.COLOR_BGR2GRAY)
   gray = cv.GaussianBlur(gray,(21,21),0)
+  blur = cv.blur(gray,(5,5))
+
+  grey_scale = blur
 
   if first_frame is None:
-    first_frame = gray
+    first_frame = blur
     continue
 
-  delta_frame = cv.absdiff(first_frame,gray)
+  delta_frame = cv.absdiff(first_frame,blur)
   threshold_frame = cv.threshold(delta_frame,50,255,cv.THRESH_BINARY)[1]
   threshold_frame = cv.dilate(threshold_frame,None,iterations=5)
 
