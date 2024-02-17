@@ -12,7 +12,15 @@ while True:
   ret,frame = cap.read() # getting info from webcam
   gray = cv.cvtColor(frame,cv.COLOR_BGR2GRAY)  # Gray scaling
   gray = cv.GaussianBlur(gray,(21,21),0)
+  blur = cv.blur(gray,(5,5))
 
+  grey_scale = blur
+
+  if first_frame is None:
+    first_frame = blur
+    continue
+
+  delta_frame = cv.absdiff(first_frame,blur)
   if first_frame is None: 
     first_frame = gray # setting first frame to gray scale frame
     continue
