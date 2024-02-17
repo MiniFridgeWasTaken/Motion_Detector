@@ -11,10 +11,8 @@ first_frame = None
 while True:
   ret,frame = cap.read() # getting info from webcam
   gray = cv.cvtColor(frame,cv.COLOR_BGR2GRAY)  # Gray scaling
-  gray = cv.GaussianBlur(gray,(21,21),0)
-  blur = cv.blur(gray,(5,5))
-
-  grey_scale = blur
+  gauss_frame = cv.GaussianBlur(gray,(21,21),0)
+  blur = cv.blur(gauss_frame,(21,21),0)
 
   if first_frame is None: 
     first_frame = blur # setting first frame to gray scale frame
@@ -22,7 +20,7 @@ while True:
 
   delta_frame = cv.absdiff(first_frame,blur) #comparing curent frame to first frame
   threshold_frame = cv.threshold(delta_frame,50,255,cv.THRESH_BINARY)[1]
-  threshold_frame = cv.dilate(threshold_frame,None,iterations=5)
+  threshold_frame = cv.dilate(threshold_frame,None,iterations=2)
 
   
 
