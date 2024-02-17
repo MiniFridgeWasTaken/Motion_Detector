@@ -16,16 +16,11 @@ while True:
 
   grey_scale = blur
 
-  if first_frame is None:
-    first_frame = blur
-    continue
-
-  delta_frame = cv.absdiff(first_frame,blur)
   if first_frame is None: 
-    first_frame = gray # setting first frame to gray scale frame
+    first_frame = blur # setting first frame to gray scale frame
     continue
 
-  delta_frame = cv.absdiff(first_frame,gray) #comparing curent frame to first frame
+  delta_frame = cv.absdiff(first_frame,blur) #comparing curent frame to first frame
   threshold_frame = cv.threshold(delta_frame,50,255,cv.THRESH_BINARY)[1]
   threshold_frame = cv.dilate(threshold_frame,None,iterations=5)
 
