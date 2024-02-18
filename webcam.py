@@ -19,7 +19,7 @@ while True:
     continue
 
   delta_frame = cv.absdiff(first_frame,blur) #comparing curent frame to first frame
-  threshold_frame = cv.threshold(delta_frame,100,255,cv.THRESH_BINARY)[1]
+  threshold_frame = cv.threshold(delta_frame,30,255,cv.THRESH_BINARY)[1]
   threshold_frame = cv.dilate(threshold_frame,None,iterations=2)
 
   
@@ -37,6 +37,7 @@ while True:
     print("No Capture")  # troubleshoot
     break
 
+  cv.imshow("difference frame",delta_frame)
   cv.imshow('Webcam',frame)   # window show webcam
 
 
